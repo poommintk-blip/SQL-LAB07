@@ -1,0 +1,21 @@
+CREATE TRIGGER trg_show_new_employee
+ON trg_show_new_employee
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @empnum VARCHAR(4);
+            @empname VARCHAR(20);
+            @position VARCHAR(15);
+            @depno VARCHAR(2);
+SELECT @empnum = empnum
+       @empname = empname
+       @position = position
+       @depno = depno
+
+PRINT 'empnum: ' + @empnum
+PRINT 'Name: ' + @empname
+PRINT 'position: ' + @position
+PRINT 'depno: ' + @depno
+
+END
+GO
