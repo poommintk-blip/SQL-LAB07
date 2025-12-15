@@ -1,0 +1,22 @@
+/* GUIDE */
+
+CREATE TRIGGER ชื่อ TRIGGER อะไรน้อ
+ON ชื่อตารางอะไรน้อ
+AFTER INSERT
+AS
+BEGIN
+DECLARE @ตัวแปรแรก datatype(ความยาวdatatype),
+        @ตัวแปรสอง datatype(ความยาวdatatype),
+        --
+        @ตัวสุดท้ายใส่ ; แทน , ปิดท้าย
+
+SELECT @ตัวแปรแรก = คอลัมแรก,
+        @ตัวแปรสอง = คอลัมสอง,
+
+FROM inserted;
+PRINT 'Add Employee';
+PRINT 'ข้อความแรก: ' + @ตัวแปรแรก;
+PRINT 'ข้อความสอง: ' + @ตัวแปรสองว
+
+END
+GO
