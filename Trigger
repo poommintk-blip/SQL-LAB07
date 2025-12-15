@@ -1,5 +1,43 @@
+/* sign 01 */
+CREATE PROCEDURE sp_GetEmployeeByLocation
+@location CHAR(50)
+AS
+BEGIN
+    SELECT
+        e.empnum,
+        e.empname,
+        e.salary,
+        e.position,
+        d.depname,
+        d.location
+    FROM employee e
+    INNER JOIN dep d
+        ON e.depno = d.depno
+    WHERE d.location = @location
+    ORDER BY e.salary DESC;
+END
+GO
+
+/* sign 02 */
+CREATE PROCEDURE sp_GetEmployeeByAVG
+@location CHAR(50)
+AS
+BEGIN
+    SELECT
+        AVG(e.salary) AS AvgSalary
+    FROM employee e
+    INNER JOIN dep d
+        ON e.depno = d.depno
+    WHERE d.location = @location
+
+END
+GO
+
+EXEC sp_GetEmployeeByAVG @location = 'silon';
+
+/* sign 03 */
 CREATE TRIGGER trg_show_new_employee
-ON trg_show_new_employee
+ON employee
 AFTER INSERT
 AS
 BEGIN
@@ -7,15 +45,18 @@ BEGIN
             @empname VARCHAR(20);
             @position VARCHAR(15);
             @depno VARCHAR(2);
-SELECT @empnum = empnum
-       @empname = empname
-       @position = position
+
+SELECT @empnum = empnum,
+       @empname = empname,
+       @position = position,
        @depno = depno
 
 PRINT 'empnum: ' + @empnum
 PRINT 'Name: ' + @empname
 PRINT 'position: ' + @position
 PRINT 'depno: ' + @depno
-
 END
 GO
+
+INSERT INTO employee(empnum, empname, hiredate, salary, position, depno)
+VALUE ('6002', 'oliver', '2024-12-15', 28000, 'clerk', '20');
