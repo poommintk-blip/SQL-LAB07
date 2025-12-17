@@ -18,6 +18,8 @@ BEGIN
 END
 GO
 
+exec sp_GetEmployeesByLocation @location='silom'
+
 /* sign 02 */
 CREATE PROCEDURE sp_GetEmployeeByAVG
 @location CHAR(50)
