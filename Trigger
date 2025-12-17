@@ -1,5 +1,5 @@
 /* sign 01 */
-CREATE PROCEDURE sp_GetEmployeeByLocation
+CREATE PROCEDURE sp_GetEmployeesByLocation
 @location CHAR(50)
 AS
 BEGIN
